@@ -1,6 +1,6 @@
 //import express
 import express from 'express';
-
+import mongoose from 'mongoose';
 //load env variables
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,7 +12,21 @@ import('./db/mongodb.js');
 const app = express();
 
 //set port, listen for requests
-const PORT = 8080;
+const PORT = 5000;
+
+const connectDB = async () => {
+    try {
+        mongoose.set("strictQuery", false);
+        const con = await mongoose.connect(process.env.HOST, {
+            useNewUrlParser: true,
+        })
+        console.log("connecté a mongoDB")
+    } catch (error) {
+        console.log(error); 
+        process.exit();
+        }
+}
+connectDB();
 
 //creation d'un model de donnée pour les taches afin de faciliter l'ajout de données
 import {Task} from './models/tasks.js';

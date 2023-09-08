@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 //connexion à la BDD avec mongoose
 // mongoose.connect('mongodb://127.0.0.1:27017/task-manager', {});
 
-const url = 'mongodb://'+process.env.HOST+'/'+process.env.DBNAME;
+const url = process.env.HOST;
 mongoose.connect(url, {})
 
 //Exemple de connexion à la BDD avec mongodb 
